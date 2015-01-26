@@ -11,7 +11,6 @@ for i=1:size(X,2)-1
     O(:,i)=X(:,i);
 end
 Y2=X(:,size(X,2));
-%initial U
 Out_size=size(O,1);
 G=[];
 data_size=size(D,1);
@@ -19,6 +18,21 @@ U_sum=[]
 record=[];
 iter=300;
 et=[];
+%{
+for i=1:data_size
+    hold on;
+    if Y(i)==1
+       r=plot(D(i,1),D(i,2),'o');
+        set(r, 'MarkerSize', 10, 'MarkerFaceColor', [1 0 0], ...
+       'MarkerEdgeColor', [0 .5 0]);
+    else
+        b=plot(D(i,1),D(i,2),'o');
+        set(b, 'MarkerSize', 10, 'MarkerFaceColor', [0 0 1], ...
+       'MarkerEdgeColor', [0 .5 0]);
+    end
+end
+%}
+%initial U
 for i=1:data_size
     U(i,1)=1/size(Y,1);
     
@@ -93,7 +107,5 @@ for i=1:Out_size
     end
 end
 Eout=err/Out_size;
-
-
 
 
